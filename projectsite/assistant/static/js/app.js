@@ -144,7 +144,6 @@ const weatherBtnTemp = document.getElementById("weatherBtnTemp");
 async function loadWeather(city) {
   weatherStatus.textContent = "Loading…";
   weatherStatus.hidden = false;
-  weatherBtnTemp.textContent = `${d.temp}°C`;
   weatherData.hidden = true;
 
   try {
@@ -163,6 +162,8 @@ async function loadWeather(city) {
     document.getElementById("wWind").textContent = `${d.wind} km/h`;
     document.getElementById("wIcon").src =
       `https://openweathermap.org/img/wn/${d.icon}@2x.png`;
+
+    weatherBtnTemp.textContent = `${d.temp}°C`;   // header button (phones)
 
     weatherStatus.hidden = true;
     weatherData.hidden = false;
