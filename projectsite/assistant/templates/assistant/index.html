@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#262624">
+    <title>RadBot</title>
+    <link rel="icon" type="image/png" href="{% static 'icons/icon-192.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+</head>
+
+<body>
+    {% csrf_token %}
+
+    <div class="app">
+
+        <header class="topbar">
+            <div class="brand">
+                <img src="{% static 'icons/icon-192.png' %}" alt="RadBot logo" class="logo">
+                <span class="brand-name">RadBot</span>
+            </div>
+              <div class="header-actions">
+                <select id="petSelect" class="pet-select" aria-label="Choose your pet"></select>
+                <button id="newChatBtn" class="btn btn-ghost" type="button">New chat</button>
+            </div>
+        </header>
+
+        <div id="offlineBanner" class="offline-banner" hidden>
+            You're offline. Messages can't be sent until you reconnect.
+        </div>
+
+        <main id="chat" class="chat">
+            <div class="msg assistant">
+                <div class="meta">RadBot · Assistant</div>
+                <div class="bubble">Hi! Ask me anything and I'll do my best to help.</div>
+            </div>
+        </main>
+
+        <div class="chips">
+            <button class="chip" type="button">Explain simply</button>
+            <button class="chip" type="button">Give me an example</button>
+            <button class="chip" type="button">Summarize this</button>
+        </div>
+
+        <div class="composer">
+            <textarea id="prompt" rows="2" placeholder="Ask a question..."></textarea>
+            <div class="composer-actions">
+                <button id="clearBtn" class="btn btn-ghost" type="button">Clear</button>
+                <button id="sendBtn" class="btn btn-accent" type="button">Send</button>
+            </div>
+        </div>
+
+        <footer class="footer-note">AI Assistant</footer>
+    </div>
+
+    <aside class="weather" id="weather">
+        <div class="weather-title">Weather</div>
+
+        <div class="weather-search">
+            <input id="cityInput" type="text" placeholder="Search city…">
+            <button id="cityBtn" class="btn btn-accent" type="button">Go</button>
+        </div>
+
+        <p id="weatherStatus" class="weather-status">Loading…</p>
+
+        <div id="weatherData" hidden>
+            <div class="weather-city" id="wCity"></div>
+            <div class="weather-main">
+                <img id="wIcon" alt="" width="64" height="64">
+                <div class="weather-temp" id="wTemp"></div>
+            </div>
+            <div class="weather-desc" id="wDesc"></div>
+            <div class="weather-stats">
+                <div><span>Feels like</span><strong id="wFeels"></strong></div>
+                <div><span>Humidity</span><strong id="wHumidity"></strong></div>
+                <div><span>Wind</span><strong id="wWind"></strong></div>
+            </div>
+        </div>
+    </aside>
+
+    <div id="pet" class="pet" aria-hidden="true">
+        <span id="petBubble" class="pet-bubble" hidden></span>
+        <span class="pet-body"><span id="petSprite" class="pet-sprite"></span></span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+
+</body>
+
+</html>
