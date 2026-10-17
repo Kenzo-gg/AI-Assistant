@@ -137,10 +137,14 @@ const cityInput = document.getElementById("cityInput");
 const cityBtn = document.getElementById("cityBtn");
 const weatherStatus = document.getElementById("weatherStatus");
 const weatherData = document.getElementById("weatherData");
+const weatherCard = document.getElementById("weather");
+const weatherBtn = document.getElementById("weatherBtn");
+const weatherBtnTemp = document.getElementById("weatherBtnTemp");
 
 async function loadWeather(city) {
   weatherStatus.textContent = "Loading…";
   weatherStatus.hidden = false;
+  weatherBtnTemp.textContent = `${d.temp}°C`;
   weatherData.hidden = true;
 
   try {
@@ -182,6 +186,17 @@ cityInput.addEventListener("keydown", (e) => {
 let savedCity = "Calamba";
 try { savedCity = localStorage.getItem("radbot_city") || "Calamba"; } catch (e) {}
 loadWeather(savedCity);
+
+weatherBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  weatherCard.classList.toggle("open");
+});
+document.addEventListener("click", (e) => {
+  if (!weatherCard.contains(e.target)) weatherCard.classList.remove("open");
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") weatherCard.classList.remove("open");
+});
 
 // ===== 8. Roaming Pokémon (walk-cycle sprites + dragging) =====
 const pet = document.getElementById("pet");
