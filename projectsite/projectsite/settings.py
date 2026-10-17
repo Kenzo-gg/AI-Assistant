@@ -8,7 +8,7 @@ SECRET_KEY = 'django-insecure-e^ljgz4=2&m&^o%bd7!p*+_uah#s6@75@syz@ek3r(6-x%7h=2
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['SleepyKenzo.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
